@@ -12,7 +12,7 @@ import requests
 
 
 # requests를 이용한 url 접근 속도 측정
-test_for_requests = requests.get('http://www.khu.ac.kr')
+test_for_requests = requests.get('http://localhost:8080')
 
 # modules = { "http" : test_for_http,
 #             "urllib" : test_for_urllib,
