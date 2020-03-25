@@ -1,4 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import cgi
 
 tasklist = ['Task 1', 'Task 2', 'Task 3']
 
@@ -7,6 +8,7 @@ tasklist = ['Task 1', 'Task 2', 'Task 3']
 class requestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.endswith('/tasklist'):
+            print(self.path)
             self.send_response(200)
             self.send_header('content-type', 'text/html')
             self.end_headers()
@@ -51,6 +53,23 @@ class requestHandler(BaseHTTPRequestHandler):
             output += '<h3><a href = "/tasklist">Task List</a></h3>'
             output += '</body></html>'
             self.wfile.write(output.encode())
+    def do_POST(self):
+        if self.path.endswith('/new'):
+            ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
+            pdict['boundary'] = bytes(pdict['boundary'], 'utf-8')
+            content_len = int(self.headers.get('Content-length'))
+            pdict['CONTENT-LENGTH'] = content_len
+
+            if ctype == 'multipart/form-data':
+                fields = cgi.parse_multipart(self.rfile, pdict)
+                newtask = fields.get('task')
+                
+                tasklist.append(newtask[0].decode())
+
+            self.send_response(301)
+            self.send_header('content-type', 'text/html')
+            self.send_header('Location', '/tasklist')
+            self.end_headers()
 
 
 

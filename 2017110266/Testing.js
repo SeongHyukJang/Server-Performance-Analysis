@@ -1,7 +1,7 @@
 var request = require('request');
 
 var options = {
-    url: 'https://www.khu.ac.kr'
+    url: 'http://localhost:8080'
 };
 
 function callback(error, response, body) {
