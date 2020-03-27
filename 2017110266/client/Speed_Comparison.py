@@ -1,7 +1,7 @@
 import Measurements
 
 print("\n========= Comparison =========")
-print("Iterations : localhost:8080")
+print("Iterations : localhost:8000")
 
 languages = [
     #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False

@@ -1,15 +1,16 @@
-#!/usr/bin/env python
-#import http
-#import urllib
-import requests
+#!/usr/bin/env python3
+
 
 # http를 이용한 url 접근 속도 측정
-#test_for_http = http.client.HTTPSConnection('www.khu.ac.kr')
+# import http
+# test_for_http = http.client.HTTPSConnection('https://localhost:8000')
 
 
 # urllib을 이용한 url 접근 속도 측정
-#test_for_urllib = urllib.request.urlopen('http://www.khu.ac.kr')
+# import urllib
+# test_for_urllib = urllib.request.urlopen('http://localhost:8000')
 
 
 # requests를 이용한 url 접근 속도 측정
-test_for_requests = requests.get('http://localhost:8080')
+import requests
+test_for_requests = requests.get('http://localhost:8000')
