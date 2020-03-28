@@ -3,7 +3,7 @@
 
 # http를 이용한 url 접근 속도 측정
 # import http
-# test_for_http = http.client.HTTPSConnection('https://localhost:8000')
+# test_for_http = http.client.HTTPSConnection('http://localhost:8000')
 
 
 # urllib을 이용한 url 접근 속도 측정
