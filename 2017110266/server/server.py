@@ -4,15 +4,12 @@ import os
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    def _set_response(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'multipart/form-data')
-        self._set_head()
-        self.end_headers()
-
-    # def _html(self, message):
-    #     content = f'<html><body>{message}</body></html>'
-    #     return content.encode()
+    # def _set_response(self):
+    #     self.send_response(200)
+    #     self.send_header('Content-Type', 'text/html')
+    #     #self.send_header('Content-Type', 'multipart/form-data')
+    #     self._set_head()
+    #     self.end_headers()
 
     def _set_head(self):
         try:
@@ -23,16 +20,27 @@ class RequestHandler(BaseHTTPRequestHandler):
             pass
 
     def do_GET(self):
-        self._set_response()
+        #self._set_response()
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html')
+        self._set_head()
+        self.end_headers()
         if self.path.endswith('comic.png'):
             shutil.copyfileobj(open(self.path[1:],'rb'), self.wfile)
 
     def do_POST(self):
-        length = int(self.headers['Content-Length'])
-        data = self.rfile.read(length)
+        try:
+            length = int(self.headers['Content-Length'])
+            data = self.rfile.read(length)
 
-        self._set_response()
-        self.wfile.write(b"POST SUCCESS")
+            self.send_response(200)
+            self.send_header('Content-Type', 'multipart/form-data')
+            self._set_head()
+            self.end_headers()
+            self.wfile.write(b"=======POST======")
+        except:
+            "Error"
+            pass
 
 
 
