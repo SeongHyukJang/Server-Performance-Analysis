@@ -1,6 +1,6 @@
 //#CURL_STATICLIB
 #include <iostream>
-#include <curl/curl.h>
+//#include <curl/curl.h>
 
 enum {
 	ERROR_ARGS = 1 ,

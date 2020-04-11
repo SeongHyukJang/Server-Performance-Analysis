@@ -22,11 +22,15 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         #self._set_response()
         self.send_response(200)
-        self.send_header('Content-Type', 'text/html')
+        #self.send_header('Content-Type', 'text/html')
+        self.send_header('Content-Type', 'application/json')
         self._set_head()
         self.end_headers()
         if self.path.endswith('comic.png'):
             shutil.copyfileobj(open(self.path[1:],'rb'), self.wfile)
+        if self.path.endswith('db.sqlite3'):
+            print(self.path)
+            
 
     def do_POST(self):
         try:
@@ -39,7 +43,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"=======POST======")
         except:
-            "Error"
+            print("Error")
             pass
 
 
