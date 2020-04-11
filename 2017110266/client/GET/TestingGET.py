@@ -13,4 +13,4 @@
 
 # requests를 이용한 url 접근 속도 측정
 import requests
-test_for_requests = requests.get('http://localhost:8000')
+response = requests.get('http://localhost:8000/data')

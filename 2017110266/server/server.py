@@ -1,52 +1,47 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import shutil
-import os
+import json
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    # def _set_response(self):
-    #     self.send_response(200)
-    #     self.send_header('Content-Type', 'text/html')
-    #     #self.send_header('Content-Type', 'multipart/form-data')
-    #     self._set_head()
-    #     self.end_headers()
-
     def _set_head(self):
-        try:
-            f = open(self.path,'rb')
-            fileSize = os.fstat(f.fileno())
-            self.send_header("Content-Length", str(fileSize[6]))
-        except:
-            pass
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+
+    def do_HEAD(self):
+        self._set_head()
 
     def do_GET(self):
-        #self._set_response()
-        self.send_response(200)
-        #self.send_header('Content-Type', 'text/html')
-        self.send_header('Content-Type', 'application/json')
         self._set_head()
-        self.end_headers()
-        if self.path.endswith('comic.png'):
-            shutil.copyfileobj(open(self.path[1:],'rb'), self.wfile)
-        if self.path.endswith('db.sqlite3'):
-            print(self.path)
-            
+
+        if self.path.endswith('data'):
+            try:
+                with open('data.json', 'r') as file:
+                    data = json.load(file)
+                    length = len(data)
+            except:
+                data = []
+                length = 0
+            self.send_header('Content-Length',str(length))
+            self.wfile.write(str(data).encode())
 
     def do_POST(self):
-        try:
+        ctype = self.headers['Content-Type']
+
+        if ctype == 'application/json':
             length = int(self.headers['Content-Length'])
-            data = self.rfile.read(length)
-
-            self.send_response(200)
-            self.send_header('Content-Type', 'multipart/form-data')
             self._set_head()
-            self.end_headers()
-            self.wfile.write(b"=======POST======")
-        except:
-            print("Error")
-            pass
+            try:
+                with open('data.json', 'r') as file:
+                    data = json.load(file)
+            except:
+                data = []
 
+            newData = json.loads(self.rfile.read(length))
+            data.append(newData)
 
+            with open('data.json', 'w') as file:
+                json.dump(data, file, ensure_ascii=False, indent = 4)
 
 def main():
     PORT = 8000
