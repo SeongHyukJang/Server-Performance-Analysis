@@ -6,7 +6,6 @@ class RequestHandler(BaseHTTPRequestHandler):
     def _set_head(self):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
-        self.end_headers()
 
     def do_HEAD(self):
         self._set_head()
@@ -31,6 +30,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         if ctype == 'application/json':
             length = int(self.headers['Content-Length'])
             self._set_head()
+            self.end_headers()
             try:
                 with open('data.json', 'r') as file:
                     data = json.load(file)
