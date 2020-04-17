@@ -23,6 +23,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 length = 0
             self.send_header('Content-Length',str(length))
             self.wfile.write(str(data).encode())
+            self.end_headers()  
 
     def do_POST(self):
         ctype = self.headers['Content-Type']

@@ -35,7 +35,6 @@ class Measurement:
             stopWatch.start()
             delegator.run(self.run_cmd)
             stopWatch.stop()
-
             times.append(int(stopWatch.elapsed_time * 1000))
         
         print(f"Speed (all): {'ms, '.join(map(str, times))}ms")
