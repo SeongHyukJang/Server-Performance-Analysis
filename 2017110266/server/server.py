@@ -23,7 +23,18 @@ class RequestHandler(BaseHTTPRequestHandler):
                 length = 0
             self.send_header('Content-Length',str(length))
             self.wfile.write(str(data).encode())
-            self.end_headers()  
+            self.end_headers()
+        
+        if self.path.endswith('calc'):
+            try:
+                sum = 0
+                count = 1
+                while count <=100:
+                    sum += count
+                    count += 1
+                self.end_headers()
+            except:
+                pass
 
     def do_POST(self):
         ctype = self.headers['Content-Type']

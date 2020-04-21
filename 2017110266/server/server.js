@@ -6,18 +6,32 @@ const server = http.createServer(function(req,res)
 {
     if(req.method == "GET")
     {
-        console.log(req.method);
-        res.writeHead(200,{'Content-Type' : 'application/json'});
-        fs.readFile('data.json', function(error,data)
+        if(req.url == "/data")
         {
-            res.write(data);
+            console.log(req.method + " / HTTP/" + req.httpVersion);
+            res.writeHead(200,{'Content-Type' : 'application/json'});
+            fs.readFile('data.json', function(error,data)
+            {
+                res.write(data);
+                res.end();
+            })
+        }
+        if(req.url == "/calc")
+        {
+            console.log(req.method);
+            res.writeHead(200);
+            var sum = 0, count = 1;
+            while(count <= 100)
+            {
+                sum += count;
+                count++;
+            }
             res.end();
-        })
-        
+        }
     }
     else if(req.method == "POST")
     {   
-        console.log(req.method);
+        console.log(req.method + " / HTTP/" + req.httpVersion);
 
         var newData;
 
