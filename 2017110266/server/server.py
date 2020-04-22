@@ -29,7 +29,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             try:
                 sum = 0
                 count = 1
-                while count <=100:
+                while count <=10000:
                     sum += count
                     count += 1
                 self.end_headers()

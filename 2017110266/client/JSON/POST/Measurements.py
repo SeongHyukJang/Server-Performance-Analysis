@@ -43,3 +43,6 @@ class Measurement:
         print(f"Speed (median): {statistics.median(times)}ms")
 
         print('\n')
+
+        result = [self.language, min(times), max(times), statistics.median(times)]
+        return result

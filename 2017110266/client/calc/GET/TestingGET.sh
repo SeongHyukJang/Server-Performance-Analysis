@@ -1,1 +1,1 @@
-curl -X GET http://localhost:8000/data
+curl -X GET http://localhost:8000/calc

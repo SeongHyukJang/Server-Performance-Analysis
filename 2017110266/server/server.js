@@ -21,7 +21,7 @@ const server = http.createServer(function(req,res)
             console.log(req.method);
             res.writeHead(200);
             var sum = 0, count = 1;
-            while(count <= 100)
+            while(count <= 10000)
             {
                 sum += count;
                 count++;
