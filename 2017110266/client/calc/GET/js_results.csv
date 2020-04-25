@@ -1,0 +1,4 @@
+Language,best,worst,median
+Python 3,94,100,98.0
+JS (node),302,309,305.5
+curl,11,13,12.5

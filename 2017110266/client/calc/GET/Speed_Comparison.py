@@ -2,8 +2,7 @@ import Measurements
 import csv
 
 print("\n========== Comparison =========")
-print("Iterations : Python (8000)")
-print("calc")
+print("GET calc")
 
 print("============ HTTP GET =============")
 
@@ -19,7 +18,14 @@ results = [['Language', 'best', 'worst', 'median']]
 for language in languages:
     results.append(Measurements.Measurement(*language).run())
 
-with open('results.csv','w',newline='',encoding='utf-8') as file:
+
+with open('python_results.csv','w',newline='',encoding='utf-8') as file:
     w = csv.writer(file)
     for data in results:
         w.writerow(data)
+
+
+# with open('js_results.csv','w',newline='',encoding='utf-8') as file:
+#     w = csv.writer(file)
+#     for data in results:
+#         w.writerow(data)
