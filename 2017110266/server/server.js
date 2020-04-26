@@ -21,16 +21,18 @@ const server = http.createServer(function(req,res)
             console.log(req.method + " / HTTP/" + req.httpVersion);
             res.writeHead(200);
 
-            var a_0 = 1;
-            var a_n = a_0;
-            var count = 0;
-            while(count != 10000)
+            let x = 1.0;
+            let pi = 1.0;
+            let i = 2;
+            while(i != 1000000)
             {
-                a_n1 = (a_n/2) +(1/a_n);
-                a_n = a_n1;
-                count++;
+                x *= -1;
+                pi += x / (2*i -1);
+                i++;
             }
-            res.write(a_n.toString());
+            pi *= 4;
+
+            res.write(pi.toString());
             res.end();
         }
         if(req.url == "/html")

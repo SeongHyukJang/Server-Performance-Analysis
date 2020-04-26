@@ -21,13 +21,15 @@ for language in languages:
     results.append(Measurements.Measurement(*language).run())
 
 
-if server == "python":
+if server == "py":
+    print("Writing in python results")
     with open('python_results.csv','w',newline='',encoding='utf-8') as file:
         w = csv.writer(file)
         for data in results:
             w.writerow(data)
 
 elif server == "js":
+    print("Writing in js results")
     with open('js_results.csv','w',newline='',encoding='utf-8') as file:
         w = csv.writer(file)
         for data in results:

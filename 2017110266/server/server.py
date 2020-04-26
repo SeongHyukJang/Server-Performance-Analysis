@@ -7,8 +7,8 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         if self.path.endswith('data'):
+            self.send_response(200)
             try:
-                self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
                 with open('GETdata.json', 'r') as file:
                     data = json.load(file)
@@ -22,19 +22,18 @@ class RequestHandler(BaseHTTPRequestHandler):
         
         if self.path.endswith('calc'):
             self.send_response(200)
-            try:
-                a_0 = 1
-                a_n = a_0
-                count = 0
-                while(count != 10000):
-                    a_n1 = (a_n/2) + (1/a_n)
-                    a_n = a_n1
-                    count += 1
-                #print("{:.20f}".format(a_n))
-                self.wfile.write(str(a_n).encode())
-                self.end_headers()
-            except:
-                pass
+            
+            x = 1.0
+            pi = 1.0
+            i = 2
+            while i != 1000000:
+                x *= -1
+                pi += x / (2 * i - 1)
+                i +=1
+            pi *= 4
+
+            self.wfile.write(str(pi).encode())
+            self.end_headers()
 
         if self.path.endswith('html'):
             self.send_response(200)
