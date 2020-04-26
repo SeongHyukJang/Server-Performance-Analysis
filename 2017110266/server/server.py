@@ -1,21 +1,16 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
+import os
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    def _set_head(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-
-    def do_HEAD(self):
-        self._set_head()
-
     def do_GET(self):
-        self._set_head()
 
         if self.path.endswith('data'):
             try:
-                with open('data.json', 'r') as file:
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                with open('GETdata.json', 'r') as file:
                     data = json.load(file)
                     length = len(data)
             except:
@@ -26,25 +21,41 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
         
         if self.path.endswith('calc'):
+            self.send_response(200)
             try:
-                sum = 0
-                count = 1
-                while count <=10000:
-                    sum += count
+                a_0 = 1
+                a_n = a_0
+                count = 0
+                while(count != 10000):
+                    a_n1 = (a_n/2) + (1/a_n)
+                    a_n = a_n1
                     count += 1
+                #print("{:.20f}".format(a_n))
+                self.wfile.write(str(a_n).encode())
                 self.end_headers()
             except:
                 pass
+
+        if self.path.endswith('html'):
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.end_headers()
+
+            with open('GEThtml.html','r') as f:
+                self.wfile.write(f.read().encode())
+            
+            
 
     def do_POST(self):
         ctype = self.headers['Content-Type']
 
         if ctype == 'application/json':
             length = int(self.headers['Content-Length'])
-            self._set_head()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
             self.end_headers()
             try:
-                with open('data.json', 'r') as file:
+                with open('POSTdata.json', 'r') as file:
                     data = json.load(file)
             except:
                 data = []
@@ -52,7 +63,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             newData = json.loads(self.rfile.read(length))
             data.append(newData)
 
-            with open('data.json', 'w') as file:
+            with open('POSTdata.json', 'w') as file:
                 json.dump(data, file, ensure_ascii=False, indent = 4)
 
 def main():
