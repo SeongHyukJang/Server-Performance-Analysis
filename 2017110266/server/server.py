@@ -1,11 +1,21 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-import os
+import lauda
+import statistics
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
+    def __init__(self, request, client_address,server):
+        self.stopWatch = lauda.StopWatch()
+        self.times = {'JSON/GET':[],'JSON/POST':[],'calc/GET':[],'html/GET':[]}
+        super().__init__(request,client_address,server)
 
+    def writeResults(self,data):
+        #print(self.times[data])
+        pass
+
+    def do_GET(self):
+        self.stopWatch.start()
         if self.path.endswith('data'):
             self.send_response(200)
             try:
@@ -34,7 +44,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             self.wfile.write(str(pi).encode())
             self.end_headers()
-
+            self.stopWatch.stop()
+            self.times['calc/GET'].append(int(self.stopWatch.elapsed_time*1000))
+        
         if self.path.endswith('html'):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')

@@ -1,4 +1,4 @@
 Language,best,worst,median
-Python 3,99,141,101.5
-JS (node),311,388,314.5
-curl,13,16,15.0
+Python 3,97,125,99.5
+JS (node),301,338,303.5
+curl,13,40,23.0
