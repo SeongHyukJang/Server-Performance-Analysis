@@ -1,7 +1,7 @@
 var request = require('request');
 
 var options = {
-    url: 'http://localhost:8000/data'
+    url: 'http://localhost:8000/json'
 };
 
 function callback(error, response, body) {

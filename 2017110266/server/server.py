@@ -16,7 +16,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self.stopWatch.start()
-        if self.path.endswith('data'):
+        if self.path.endswith('json'):
             self.send_response(200)
             try:
                 self.send_header('Content-Type', 'application/json')

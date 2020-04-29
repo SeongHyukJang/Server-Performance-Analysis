@@ -6,7 +6,7 @@ const server = http.createServer(function(req,res)
 {
     if(req.method == "GET")
     {
-        if(req.url == "/data")
+        if(req.url == "/json")
         {
             console.log(req.method + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type' : 'application/json'});
