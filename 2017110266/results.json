@@ -4,24 +4,24 @@
             {
                 "Python": [
                     {
-                        "JSON": [
+                        "json": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 124, 166, 129.0], ['JS (node)', 302, 311, 305.0], ['curl', 12, 18, 17.0]]",
-                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 98, 148, 100.5], ['JS (node)', 305, 314, 309.5], ['curl', 15, 19, 15.5]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 123, 146, 126.0], ['JS (node)', 297, 302, 299.0], ['curl', 11, 17, 13.0]]",
+                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 99, 119, 100.5], ['JS (node)', 302, 307, 304.0], ['curl', 14, 16, 14.0]]"
                             }
                         ]
                     },
                     {
                         "calc": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 252, 285, 257.0], ['JS (node)', 430, 482, 446.0], ['curl', 147, 151, 149.0]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 251, 361, 279.0], ['JS (node)', 424, 471, 426.5], ['curl', 142, 144, 142.5]]"
                             }
                         ]
                     },
                     {
                         "html": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 96, 127, 97.0], ['JS (node)', 304, 312, 306.5], ['curl', 13, 19, 14.5]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 94, 116, 95.5], ['JS (node)', 300, 303, 301.0], ['curl', 11, 18, 13.0]]"
                             }
                         ]
                     }
@@ -30,24 +30,24 @@
             {
                 "JavaScript": [
                     {
-                        "JSON": [
+                        "json": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 96, 136, 98.0], ['JS (node)', 303, 309, 305.0], ['curl', 12, 15, 13.5]]",
-                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 97, 122, 100.5], ['JS (node)', 305, 310, 309.0], ['curl', 13, 40, 18.0]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 93, 121, 96.0], ['JS (node)', 299, 303, 301.0], ['curl', 12, 23, 21.0]]",
+                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 97, 123, 98.0], ['JS (node)', 301, 305, 303.5], ['curl', 13, 15, 14.0]]"
                             }
                         ]
                     },
                     {
                         "calc": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 97, 137, 100.5], ['JS (node)', 307, 316, 309.0], ['curl', 15, 23, 18.5]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 95, 120, 97.5], ['JS (node)', 302, 309, 303.0], ['curl', 14, 26, 18.5]]"
                             }
                         ]
                     },
                     {
                         "html": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 95, 115, 98.5], ['JS (node)', 304, 309, 306.5], ['curl', 12, 18, 14.5]]"
+                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 95, 126, 96.0], ['JS (node)', 299, 303, 301.0], ['curl', 12, 37, 16.5]]"
                             }
                         ]
                     }

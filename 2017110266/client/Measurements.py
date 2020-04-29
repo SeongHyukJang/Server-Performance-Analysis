@@ -2,6 +2,8 @@ import delegator
 import lauda
 import logging
 import statistics
+import os
+import json
 
 
 class Measurement:
@@ -46,3 +48,44 @@ class Measurement:
 
         result = [self.language, min(times), max(times), statistics.median(times)]
         return result
+
+def selectIterations(server,resource,method):
+    if(method == "GET"):
+        print("\n============ HTTP GET =============")
+    elif(method == "POST"):
+        print("\n============ HTTP POST ============")
+
+    languages = [
+                #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False
+                ["Python 3", "python --version", "python " + method + resource + ".py"],
+                ["JS (node)", "node --version", "node " + method + resource + ".js"],
+                ["curl", "curl --version", "./" + method + resource + ".sh"]
+            ]
+    return languages
+    
+
+
+    
+
+
+def writeResults(server, results,resource, method):
+    os.chdir('/home/jsh/GitHub/SWCON_Project/2017110266')
+    with open('results.json','r') as file:
+        data = json.load(file)
+    
+    if server == "Python":
+        serverIndex = 0
+    elif server == "JavaScript":
+        serverIndex = 1
+
+    if resource == "json":
+        resourceIndex = 0
+    elif resource == "calc":
+        resourceIndex = 1
+    elif resource == "html":
+        resourceIndex = 2
+        
+    data[0]['language'][serverIndex][server][resourceIndex][resource][0][method] = str(results)
+
+    with open('results.json','w') as file:
+        json.dump(data,file,ensure_ascii=False,indent=4)
