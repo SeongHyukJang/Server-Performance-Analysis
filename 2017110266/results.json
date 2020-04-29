@@ -6,22 +6,122 @@
                     {
                         "json": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 123, 146, 126.0], ['JS (node)', 297, 302, 299.0], ['curl', 11, 17, 13.0]]",
-                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 99, 119, 100.5], ['JS (node)', 302, 307, 304.0], ['curl', 14, 16, 14.0]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        124,
+                                        146,
+                                        127.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        297,
+                                        302,
+                                        299.5
+                                    ],
+                                    [
+                                        "curl",
+                                        12,
+                                        21,
+                                        14.5
+                                    ]
+                                ],
+                                "POST": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        98,
+                                        117,
+                                        100.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        302,
+                                        390,
+                                        313.5
+                                    ],
+                                    [
+                                        "curl",
+                                        14,
+                                        21,
+                                        17.5
+                                    ]
+                                ]
                             }
                         ]
                     },
                     {
                         "calc": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 251, 361, 279.0], ['JS (node)', 424, 471, 426.5], ['curl', 142, 144, 142.5]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        250,
+                                        273,
+                                        251.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        424,
+                                        433,
+                                        428.0
+                                    ],
+                                    [
+                                        "curl",
+                                        143,
+                                        145,
+                                        143.0
+                                    ]
+                                ]
                             }
                         ]
                     },
                     {
                         "html": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 94, 116, 95.5], ['JS (node)', 300, 303, 301.0], ['curl', 11, 18, 13.0]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        94,
+                                        112,
+                                        95.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        299,
+                                        305,
+                                        302.0
+                                    ],
+                                    [
+                                        "curl",
+                                        11,
+                                        14,
+                                        13.0
+                                    ]
+                                ]
                             }
                         ]
                     }
@@ -32,22 +132,122 @@
                     {
                         "json": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 93, 121, 96.0], ['JS (node)', 299, 303, 301.0], ['curl', 12, 23, 21.0]]",
-                                "POST": "[['Language', 'best', 'worst', 'median'], ['Python 3', 97, 123, 98.0], ['JS (node)', 301, 305, 303.5], ['curl', 13, 15, 14.0]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        94,
+                                        118,
+                                        97.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        299,
+                                        304,
+                                        302.0
+                                    ],
+                                    [
+                                        "curl",
+                                        12,
+                                        19,
+                                        13.5
+                                    ]
+                                ],
+                                "POST": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        96,
+                                        125,
+                                        103.5
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        306,
+                                        363,
+                                        332.5
+                                    ],
+                                    [
+                                        "curl",
+                                        13,
+                                        15,
+                                        13.0
+                                    ]
+                                ]
                             }
                         ]
                     },
                     {
                         "calc": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 95, 120, 97.5], ['JS (node)', 302, 309, 303.0], ['curl', 14, 26, 18.5]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        97,
+                                        138,
+                                        102.5
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        301,
+                                        434,
+                                        355.0
+                                    ],
+                                    [
+                                        "curl",
+                                        14,
+                                        22,
+                                        14.5
+                                    ]
+                                ]
                             }
                         ]
                     },
                     {
                         "html": [
                             {
-                                "GET": "[['Language', 'best', 'worst', 'median'], ['Python 3', 95, 126, 96.0], ['JS (node)', 299, 303, 301.0], ['curl', 12, 37, 16.5]]"
+                                "GET": [
+                                    [
+                                        "Language",
+                                        "best",
+                                        "worst",
+                                        "median"
+                                    ],
+                                    [
+                                        "Python 3",
+                                        96,
+                                        119,
+                                        101.0
+                                    ],
+                                    [
+                                        "JS (node)",
+                                        301,
+                                        385,
+                                        303.5
+                                    ],
+                                    [
+                                        "curl",
+                                        13,
+                                        20,
+                                        15.0
+                                    ]
+                                ]
                             }
                         ]
                     }

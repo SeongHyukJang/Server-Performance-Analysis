@@ -85,7 +85,7 @@ def writeResults(server, results,resource, method):
     elif resource == "html":
         resourceIndex = 2
         
-    data[0]['language'][serverIndex][server][resourceIndex][resource][0][method] = str(results)
+    data[0]['language'][serverIndex][server][resourceIndex][resource][0][method] = list(results)
 
     with open('results.json','w') as file:
         json.dump(data,file,ensure_ascii=False,indent=4)
