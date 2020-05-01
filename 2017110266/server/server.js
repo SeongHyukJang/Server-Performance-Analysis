@@ -4,10 +4,13 @@ const PORT = 8000;
 
 const server = http.createServer(function(req,res)
 {
+    var startTime, endTime;
     if(req.method == "GET")
     {
-        if(req.url == "/data")
+        if(req.url == "/json")
         {
+            startTime = new Date().getTime();
+
             console.log(req.method + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type' : 'application/json'});
             fs.readFile('GETdata.json', function(error,data)
@@ -15,9 +18,15 @@ const server = http.createServer(function(req,res)
                 res.write(data);
                 res.end();
             })
+
+            endTime = new Date().getTime();
+            writeResults(endTime-startTime,req.headers['user-agent'],'json','GET');
+            
         }
         if(req.url == "/calc")
         {
+            startTime = new Date().getTime();
+
             console.log(req.method + " / HTTP/" + req.httpVersion);
             res.writeHead(200);
 
@@ -34,9 +43,14 @@ const server = http.createServer(function(req,res)
 
             res.write(pi.toString());
             res.end();
+
+            endTime = new Date().getTime();
+            writeResults(endTime-startTime,req.headers['user-agent'],'calc','GET');
         }
         if(req.url == "/html")
         {
+            startTime = new Date().getTime();
+
             console.log(req.method + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type':'text/html'});
             fs.readFile('GEThtml.html',function(err,data)
@@ -44,10 +58,15 @@ const server = http.createServer(function(req,res)
                 res.write(data);
                 res.end()
             })
+
+            endTime = new Date().getTime();
+            writeResults(endTime-startTime,req.headers['user-agent'],'html','GET');
         }
     }
     else if(req.method == "POST")
     {   
+        startTime = new Date().getTime()
+
         console.log(req.method + " / HTTP/" + req.httpVersion);
 
         var newData;
@@ -76,9 +95,28 @@ const server = http.createServer(function(req,res)
                 res.writeHead(200);
                 res.end();
             })
+            endTime = new Date().getTime();
+            writeResults(endTime-startTime, req.headers['user-agent'],'json','POST');
         })
     }
 })
+
+function writeResults(newData, userAgent, resource, method)
+{
+    fs.readFile('serverResults.json',function(error, data)
+    {
+        var user,resourceIndex;
+        data = JSON.parse(data);
+        if(userAgent == "python-requests/2.23.0"){user = "python";}
+        else if(userAgent == "curl/7.58.0"){user = "curl";}
+        else{user = "javascript";}
+
+
+        data['ServerLanguage']['javascript'][resource][method].push(newData)
+
+        fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
+    })
+}
 
 server.listen(PORT,function(error)
 {
