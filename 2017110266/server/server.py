@@ -7,31 +7,24 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def __init__(self, request, client_address, server):
         self.stopWatch = lauda.StopWatch()
-        with open('PythonServerResults.json','r') as file:
+        with open('serverResults.json','r') as file:
             self.times = json.load(file)
         super().__init__(request,client_address,server)
 
     def writeResults(self,newData,userAgent,resource,method):
-        with open('PythonServerResults.json','r') as file:
+        with open('serverResults.json','r') as file:
             data = json.load(file)
 
         if userAgent == 'python-requests/2.23.0':
-            user = "Python"
+            user = "python"
         elif userAgent == 'curl/7.58.0':
             user = "curl"
         else:
-            user = "JavaScript"
+            user = "javascript"
 
-        if resource == 'json':
-            resourceIndex = 0
-        elif resource == 'calc':
-            resourceIndex = 1
-        elif resource == 'html':
-            resourceIndex = 2
+        data["ServerLanguage"]['python']['ClientLanguage'][user][resource][method].append(newData)
 
-        data['clientLanguage'][0][user][resourceIndex][resource][0][method].append(newData)
-
-        with open('PythonServerResults.json','w') as file:
+        with open('serverResults.json','w') as file:
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
