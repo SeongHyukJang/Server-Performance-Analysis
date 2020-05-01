@@ -112,7 +112,7 @@ function writeResults(newData, userAgent, resource, method)
         else{user = "javascript";}
 
 
-        data["ServerLanguage"]['javascript']['ClientLanguage'][user][resource][method].push(newData)
+        data['ServerLanguage']['javascript'][resource][method].push(newData)
 
         fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
     })

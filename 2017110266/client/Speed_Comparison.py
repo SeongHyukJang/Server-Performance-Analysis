@@ -7,7 +7,7 @@ server = input("Select server : ")
 resource = input("Select resource : ")
 method = input("Select method : ")
 
-results = [['Language', 'best', 'worst', 'median']]
+results = []
 
 languages = Measurements.selectIterations(server,resource,method)
 for language in languages:

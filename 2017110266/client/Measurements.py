@@ -4,7 +4,6 @@ import logging
 import statistics
 import json
 
-
 class Measurement:
 
     def __init__(self, _language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False):
@@ -37,15 +36,11 @@ class Measurement:
             delegator.run(self.run_cmd)
             stopWatch.stop()
             times.append(int(stopWatch.elapsed_time * 1000))
-        
-        print(f"Speed (all): {'ms, '.join(map(str, times))}ms")
-        print(f"Speed (best): {min(times)}ms")
-        print(f"Speed (worst): {max(times)}ms")
-        print(f"Speed (median): {statistics.median(times)}ms")
 
         print('\n')
 
-        result = [self.language, min(times), max(times), statistics.median(times)]
+        result = [self.language]
+        result.extend(times)
         return result
 
 def selectIterations(server,resource,method):

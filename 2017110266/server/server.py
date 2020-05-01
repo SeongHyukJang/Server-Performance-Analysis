@@ -15,14 +15,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         with open('serverResults.json','r') as file:
             data = json.load(file)
 
-        if userAgent == 'python-requests/2.23.0':
-            user = "python"
-        elif userAgent == 'curl/7.58.0':
-            user = "curl"
-        else:
-            user = "javascript"
-
-        data["ServerLanguage"]['python']['ClientLanguage'][user][resource][method].append(newData)
+        data['ServerLanguage']['python'][resource][method].append(newData)
 
         with open('serverResults.json','w') as file:
             json.dump(data,file,ensure_ascii=False,indent=4)
