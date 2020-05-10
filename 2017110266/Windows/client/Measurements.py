@@ -54,7 +54,7 @@ def selectIterations(server,resource,method):
                 #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False
                 ["Python 3", "python --version", "python " + method + resource + ".py"],
                 ["JS (node)", "node --version", "node " + method + resource + ".js"],
-                ["curl", "curl --version", "./" + method + resource + ".sh"]
+                ["curl", "curl --version", method + resource + ".sh"]
             ]
     return languages
     
