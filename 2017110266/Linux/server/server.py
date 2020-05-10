@@ -59,8 +59,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
 
-            with open('index.html','r') as f:
-                self.wfile.write(f.read().encode())
+            with open('index.html','rb') as f:
+                self.wfile.write(f.read())
             
             self.stopWatch.stop()
             self.writeResults(int(self.stopWatch.elapsed_time * 1000),self.headers['User-Agent'],'html','GET')
