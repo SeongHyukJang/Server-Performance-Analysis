@@ -1,13 +1,6 @@
-var request = require('request');
+const superagent = require('superagent');
 
-var options = {
-    url: 'http://localhost:8000/html'
-};
-
-function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        //console.log(body);
-    }
-}
-
-request(options, callback);
+superagent.get('http://localhost:8000/html',function(err,res)
+{
+    if(err){console.log(err);}
+})

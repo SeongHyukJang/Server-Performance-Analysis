@@ -9,7 +9,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.stopWatch = lauda.StopWatch()
         super().__init__(request,client_address,server)
 
-    def writeResults(self,newData,userAgent,resource,method):
+    def writeResults(self,newData,resource,method):
         with open('serverResults.json','r') as file:
             data = json.load(file)
 
@@ -30,7 +30,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(data).encode())
         
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time*1000),self.headers['User-Agent'],'json','GET')
+            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','GET')
 
         if self.path.endswith('calc'):
             self.stopWatch.start()
@@ -48,7 +48,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(pi).encode())
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time*1000),self.headers['User-Agent'],'calc','GET')
+            self.writeResults(int(self.stopWatch.elapsed_time*1000),'calc','GET')
         
         if self.path.endswith('html'):
             self.stopWatch.start()
@@ -61,7 +61,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
             
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),self.headers['User-Agent'],'html','GET')
+            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'html','GET')
 
     def do_POST(self):
         ctype = self.headers['Content-Type']
@@ -87,7 +87,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 json.dump(data, file, ensure_ascii=False, indent = 4)
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000), self.headers['User-Agent'],'json','POST')
+            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','POST')
 
 def main():
     PORT = 8000

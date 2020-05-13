@@ -1,17 +1,6 @@
-var request = require('request');
+const superagent = require('superagent');
 
-var headers = {
-    'Content-Type': 'application/json'
-};
-
-var dataString = '{ "userID" : "2017110266", "usrPW" : "1234", "name" : "JSH", "age" : 25 }';
-
-var options = {
-    url: 'http://localhost:8000',
-    method: 'POST',
-    headers: headers,
-    body: dataString
-};
+var data = '{ "userID" : "2017110266", "usrPW" : "1234", "name" : "JSH", "age" : 25 }';
 
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -19,4 +8,9 @@ function callback(error, response, body) {
     }
 }
 
-request(options, callback);
+superagent.post('http://localhost:8000')
+        .set('Content-Type','application/json')
+        .send(data)
+        .end((err,res)=>{
+            if(err){console.log(err);}
+        });
