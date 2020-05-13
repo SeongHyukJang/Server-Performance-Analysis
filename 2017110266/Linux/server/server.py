@@ -7,8 +7,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def __init__(self, request, client_address, server):
         self.stopWatch = lauda.StopWatch()
-        # with open('serverResults.json','r') as file:
-        #     self.times = json.load(file)
         super().__init__(request,client_address,server)
 
     def writeResults(self,newData,userAgent,resource,method):

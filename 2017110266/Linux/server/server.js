@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const PORT = 8000;
+const PORT = 8080;
 
 const server = http.createServer(function(req,res)
 {
@@ -11,7 +11,7 @@ const server = http.createServer(function(req,res)
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type' : 'application/json'});
             fs.readFile('GETdata.json', function(error,data)
             {
@@ -27,7 +27,7 @@ const server = http.createServer(function(req,res)
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200);
 
             let x = 1.0;
@@ -51,7 +51,7 @@ const server = http.createServer(function(req,res)
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type':'text/html'});
             fs.readFile('index.html',function(err,data)
             {
@@ -67,7 +67,7 @@ const server = http.createServer(function(req,res)
     {   
         startTime = new Date().getTime()
 
-        console.log(req.method + " / HTTP/" + req.httpVersion);
+        console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
 
         var newData;
 

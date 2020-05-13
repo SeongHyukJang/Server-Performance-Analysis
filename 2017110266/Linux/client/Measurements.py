@@ -43,18 +43,24 @@ class Measurement:
         return result
 
 def selectIterations(server,resource,method):
-    if(method == "get"):
-        print("\n============ HTTP GET =============")
-        method = "GET"
-    elif(method == "post"):
-        print("\n============ HTTP POST ============")
-        method = "POST"
+
+    print("\n=============================================\n\n")
+    print("Server : ",server)
+    print("resource : ", resource)
+    print("method : ", method)
+
+    if server == "python":
+        folder = "toPython"
+        end = 'PY'
+    elif server == 'javascript':
+        folder = "toJavascript"
+        end = 'JS'
 
     languages = [
                 #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False
-                ["Python 3", "python --version", "python " + method + resource + ".py"],
-                ["JS (node)", "node --version", "node " + method + resource + ".js"],
-                ["curl", "curl --version", "./" + method + resource + ".sh"]
+                ["Python 3", "python --version", "python " + folder + "/" + method + resource + end + ".py"],
+                ["JS (node)", "node --version", "node " + folder + "/" + method + resource + end + ".js"],
+                ["curl", "curl --version", folder + "/" + method + resource + end + ".sh"]
             ]
     return languages
     

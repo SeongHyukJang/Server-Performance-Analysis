@@ -1,16 +1,18 @@
 import Measurements
+import json
 
-print("\n========== Comparison =========")
-print("GET calc")
-
-server = input("Select server (python/javascirpt) : ")
-resource = input("Select resource (json/calc/html) : ")
-method = input("Select method (get/post) : ")
+print("\n========== Comparison =========\n")
 
 results = []
 
-languages = Measurements.selectIterations(server,resource,method)
-for language in languages:
-    results.append(Measurements.Measurement(*language).run())
+with open('clientResults.json','r') as file:
+    iterations = json.load(file)
 
-Measurements.writeResults(server,results,resource,method)
+for server in iterations['ServerLanguage']:
+    for resource in iterations['ServerLanguage'][server]:
+        for method in iterations['ServerLanguage'][server][resource]:
+            languages = Measurements.selectIterations(server,resource,method)
+            for language in languages:
+                results.append(Measurements.Measurement(*language).run())
+            Measurements.writeResults(server,results,resource,method)
+            results.clear()
