@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const PORT = 8000;
+const PORT = 8080;
 
 const server = http.createServer(function(req,res)
 {
@@ -11,7 +11,7 @@ const server = http.createServer(function(req,res)
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type' : 'application/json'});
             fs.readFile('GETdata.json', function(error,data)
             {
@@ -20,14 +20,14 @@ const server = http.createServer(function(req,res)
             })
 
             endTime = new Date().getTime();
-            writeResults(endTime-startTime,req.headers['user-agent'],'json','GET');
+            writeResults(endTime-startTime,'json','GET');
             
         }
         if(req.url == "/calc")
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200);
 
             let x = 1.0;
@@ -45,13 +45,13 @@ const server = http.createServer(function(req,res)
             res.end();
 
             endTime = new Date().getTime();
-            writeResults(endTime-startTime,req.headers['user-agent'],'calc','GET');
+            writeResults(endTime-startTime,'calc','GET');
         }
         if(req.url == "/html")
         {
             startTime = new Date().getTime();
 
-            console.log(req.method + " / HTTP/" + req.httpVersion);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type':'text/html'});
             fs.readFile('index.html',function(err,data)
             {
@@ -60,14 +60,14 @@ const server = http.createServer(function(req,res)
             })
 
             endTime = new Date().getTime();
-            writeResults(endTime-startTime,req.headers['user-agent'],'html','GET');
+            writeResults(endTime-startTime,'html','GET');
         }
     }
     else if(req.method == "POST")
     {   
         startTime = new Date().getTime()
 
-        console.log(req.method + " / HTTP/" + req.httpVersion);
+        console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
 
         var newData;
 
@@ -96,24 +96,18 @@ const server = http.createServer(function(req,res)
                 res.end();
             })
             endTime = new Date().getTime();
-            writeResults(endTime-startTime, req.headers['user-agent'],'json','POST');
+            writeResults(endTime-startTime,'json','POST');
         })
     }
 })
 
-function writeResults(newData, userAgent, resource, method)
+function writeResults(newData, resource, method)
 {
     fs.readFile('serverResults.json',function(error, data)
     {
-        var user,resourceIndex;
         data = JSON.parse(data);
-        if(userAgent == "python-requests/2.23.0"){user = "python";}
-        else if(userAgent == "curl/7.58.0"){user = "curl";}
-        else{user = "javascript";}
 
-
-        data['ServerLanguage']['javascript'][resource][method].push(newData)
-
+        data['ServerLanguage']['javascript'][resource][method].push(newData);
         fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
     })
 }
