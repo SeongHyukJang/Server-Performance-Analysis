@@ -56,11 +56,10 @@ def selectIterations(server,resource,method):
     
 
 
-def writeResults(server, results,resource, method):
+def writeResults(OS,server, results,resource, method):
     with open('clientResults.json','r') as file:
         data = json.load(file)
     
-    OS = 'Linux'
     data['OS'][OS]['Server'][server]['resource'][resource]['method'][method] = list(results)
 
     with open('clientResults.json','w') as file:
