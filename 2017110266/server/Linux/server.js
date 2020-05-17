@@ -101,9 +101,9 @@ const server = http.createServer(function(req,res)
 
 function writeResults(newData, resource, method)
 {
-    var data = JSON.parse(fs.readFileSync('serverResults.json'));
+    var data = JSON.parse(fs.readFileSync('ServerResult.json'));
     data['ServerLanguage']['javascript'][resource][method].push(newData);
-    fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
+    fs.writeFileSync('ServerResult.json',JSON.stringify(data,null,4));
 }
 
 server.listen(PORT,function(error)
