@@ -1,7 +1,5 @@
 import delegator
 import lauda
-import logging
-import statistics
 import json
 
 class Measurement:
@@ -33,7 +31,6 @@ class Measurement:
         return result
 
 def selectIterations(server,resource,method):
-
     print("\n=============================================\n\n")
     print("Server : ",server)
     print("resource : ", resource)
@@ -57,10 +54,10 @@ def selectIterations(server,resource,method):
 
 
 def writeResults(OS,server, results,resource, method):
-    with open('clientResults.json','r') as file:
+    with open('ResponseTimetResult.json','r') as file:
         data = json.load(file)
     
     data['OS'][OS]['Server'][server]['resource'][resource]['method'][method] = list(results)
 
-    with open('clientResults.json','w') as file:
+    with open('ResponseTimetResult.json','w') as file:
         json.dump(data,file,ensure_ascii=False,indent=4)

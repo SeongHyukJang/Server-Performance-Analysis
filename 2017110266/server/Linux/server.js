@@ -77,23 +77,22 @@ const server = http.createServer(function(req,res)
 
         req.on('end', function()
         {
-            fs.readFile('POSTdata.json',function(error,data)
+            newData = JSON.parse(newData);
+
+            data = fs.readFileSync('POSTdata.json');
+            if(data.toString() == '')
             {
-                newData = JSON.parse(newData);
-                if(data.toString() == '')
-                {
-                    data = JSON.parse('[]');
-                    data.push(newData)
-                }
-                else
-                {
-                    data = JSON.parse(data);
-                    data.push(newData)
-                }
-                fs.writeFileSync('POSTdata.json', JSON.stringify(data,null,4));
-                res.writeHead(200);
-                res.end();
-            })
+                data = JSON.parse('[]');
+            }
+            else
+            {
+                data = JSON.parse(fs.readFileSync('POSTdata.json'));
+            }
+            
+            data.push(newData);
+            fs.writeFileSync('POSTdata.json',JSON.stringify(data,null,4));
+            res.writeHead(200);
+            res.end();
             endTime = new Date().getTime();
             writeResults(endTime-startTime,'json','POST');
         })
@@ -102,13 +101,9 @@ const server = http.createServer(function(req,res)
 
 function writeResults(newData, resource, method)
 {
-    fs.readFile('serverResults.json',function(error, data)
-    {
-        data = JSON.parse(data);
-
-        data['ServerLanguage']['javascript'][resource][method].push(newData);
-        fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
-    })
+    var data = JSON.parse(fs.readFileSync('serverResults.json'));
+    data['ServerLanguage']['javascript'][resource][method].push(newData);
+    fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
 }
 
 server.listen(PORT,function(error)

@@ -1,0 +1,232 @@
+{
+    "OS": {
+        "Linux": {
+            "Server": {
+                "python": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        22,
+                                        12,
+                                        14,
+                                        17,
+                                        20,
+                                        20,
+                                        22,
+                                        26,
+                                        1053
+                                    ]
+                                ],
+                                "POST": [
+                                    [
+                                        26,
+                                        35,
+                                        21,
+                                        25,
+                                        20,
+                                        23,
+                                        30,
+                                        29,
+                                        33
+                                    ]
+                                ]
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        200,
+                                        320,
+                                        471,
+                                        613,
+                                        730,
+                                        867,
+                                        1048,
+                                        1175,
+                                        1317
+                                    ]
+                                ]
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        13,
+                                        14,
+                                        14,
+                                        16,
+                                        18,
+                                        20,
+                                        22,
+                                        26,
+                                        27
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                },
+                "javascript": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        18,
+                                        13,
+                                        16,
+                                        16,
+                                        18,
+                                        20,
+                                        25,
+                                        26,
+                                        27
+                                    ]
+                                ],
+                                "POST": [
+                                    [
+                                        16,
+                                        17,
+                                        20,
+                                        21,
+                                        24,
+                                        28,
+                                        25,
+                                        30,
+                                        32
+                                    ]
+                                ]
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        24,
+                                        31,
+                                        32,
+                                        47,
+                                        46,
+                                        43,
+                                        42,
+                                        47,
+                                        49
+                                    ]
+                                ]
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": [
+                                    [
+                                        13,
+                                        14,
+                                        13,
+                                        16,
+                                        20,
+                                        21,
+                                        24,
+                                        24,
+                                        26
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Docker": {
+            "Server": {
+                "python": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": [],
+                                "POST": []
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": []
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": []
+                            }
+                        }
+                    }
+                },
+                "javascript": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": [],
+                                "POST": []
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": []
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": []
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Windows": {
+            "Server": {
+                "python": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": {},
+                                "POST": {}
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": {}
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": {}
+                            }
+                        }
+                    }
+                },
+                "javascript": {
+                    "resource": {
+                        "json": {
+                            "method": {
+                                "GET": {},
+                                "POST": {}
+                            }
+                        },
+                        "calc": {
+                            "method": {
+                                "GET": {}
+                            }
+                        },
+                        "html": {
+                            "method": {
+                                "GET": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
