@@ -10,12 +10,12 @@ class RequestHandler(BaseHTTPRequestHandler):
         super().__init__(request,client_address,server)
 
     def writeResults(self,newData,resource,method):
-        with open('serverResults.json','r') as file:
+        with open('ServerResult.json','r') as file:
             data = json.load(file)
 
         data['ServerLanguage']['python'][resource][method].append(newData)
 
-        with open('serverResults.json','w') as file:
+        with open('ServerResult.json','w') as file:
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
