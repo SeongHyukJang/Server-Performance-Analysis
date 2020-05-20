@@ -6,7 +6,7 @@ print("\n========== Speed Comparison =========\n")
 
 results = []
 
-with open('clientResults.json','r') as file:
+with open('ResponseTimeResult.json','r') as file:
     iterations = json.load(file)
 
 OS = requests.get('http://localhost:8000/os').content.decode()

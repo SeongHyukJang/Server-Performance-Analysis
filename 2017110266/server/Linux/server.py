@@ -36,7 +36,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(data).encode())
         
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','GET')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'json','GET')
 
         if self.path.endswith('calc'):
             self.stopWatch.start()
@@ -54,7 +54,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(pi).encode())
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time*1000),'calc','GET')
+            self.writeResults(self.stopWatch.elapsed_time*1000,'calc','GET')
         
         if self.path.endswith('html'):
             self.stopWatch.start()
@@ -67,7 +67,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
             
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'html','GET')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'html','GET')
 
     def do_POST(self):
         ctype = self.headers['Content-Type']
@@ -93,7 +93,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 json.dump(data, file, ensure_ascii=False, indent = 4)
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','POST')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'json','POST')
 
 def main():
     PORT = 8000
