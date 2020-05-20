@@ -1,7 +1,6 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import lauda
-import statistics
 
 class RequestHandler(BaseHTTPRequestHandler):
 
@@ -10,12 +9,12 @@ class RequestHandler(BaseHTTPRequestHandler):
         super().__init__(request,client_address,server)
 
     def writeResults(self,newData,resource,method):
-        with open('serverResults.json','r') as file:
+        with open('ServerResult.json','r') as file:
             data = json.load(file)
 
         data['ServerLanguage']['python'][resource][method].append(newData)
 
-        with open('serverResults.json','w') as file:
+        with open('ServerResult.json','w') as file:
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
@@ -36,7 +35,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(data).encode())
         
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','GET')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'json','GET')
 
         if self.path.endswith('calc'):
             self.stopWatch.start()
@@ -54,7 +53,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(str(pi).encode())
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time*1000),'calc','GET')
+            self.writeResults(self.stopWatch.elapsed_time*1000,'calc','GET')
         
         if self.path.endswith('html'):
             self.stopWatch.start()
@@ -67,7 +66,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
             
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'html','GET')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'html','GET')
 
     def do_POST(self):
         ctype = self.headers['Content-Type']
@@ -93,7 +92,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 json.dump(data, file, ensure_ascii=False, indent = 4)
 
             self.stopWatch.stop()
-            self.writeResults(int(self.stopWatch.elapsed_time * 1000),'json','POST')
+            self.writeResults(self.stopWatch.elapsed_time * 1000,'json','POST')
 
 def main():
     PORT = 8000

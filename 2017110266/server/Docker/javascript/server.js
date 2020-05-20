@@ -9,7 +9,7 @@ const server = http.createServer(function(req,res)
     {
         if(req.url == "/json")
         {
-            startTime = new Date().getTime();
+            startTime = process.hrtime();
 
             console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type' : 'application/json'});
@@ -19,13 +19,14 @@ const server = http.createServer(function(req,res)
                 res.end();
             })
 
-            endTime = new Date().getTime();
-            writeResults(endTime-startTime,'json','GET');
+            endTime = process.hrtime(startTime);
+            endTime = Number(endTime[1] * Math.pow(10,-6));
+            writeResults(endTime,'json','GET');
             
         }
         if(req.url == "/calc")
         {
-            startTime = new Date().getTime();
+            startTime = process.hrtime();
 
             console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200);
@@ -44,12 +45,13 @@ const server = http.createServer(function(req,res)
             res.write(pi.toString());
             res.end();
 
-            endTime = new Date().getTime();
-            writeResults(endTime-startTime,'calc','GET');
+            endTime = process.hrtime(startTime);
+            endTime = Number(endTime[1] * Math.pow(10,-6));
+            writeResults(endTime,'calc','GET');
         }
         if(req.url == "/html")
         {
-            startTime = new Date().getTime();
+            startTime = process.hrtime();
 
             console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
             res.writeHead(200,{'Content-Type':'text/html'});
@@ -59,13 +61,14 @@ const server = http.createServer(function(req,res)
                 res.end()
             })
 
-            endTime = new Date().getTime();
-            writeResults(endTime-startTime,'html','GET');
+            endTime = process.hrtime(startTime);
+            endTime = Number(endTime[1] * Math.pow(10,-6));
+            writeResults(endTime,'html','GET');
         }
     }
     else if(req.method == "POST")
     {   
-        startTime = new Date().getTime()
+        startTime = process.hrtime();
 
         console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
 
@@ -93,17 +96,19 @@ const server = http.createServer(function(req,res)
             fs.writeFileSync('POSTdata.json',JSON.stringify(data,null,4));
             res.writeHead(200);
             res.end();
-            endTime = new Date().getTime();
-            writeResults(endTime-startTime,'json','POST');
+
+            endTime = process.hrtime(startTime);
+            endTime = Number(endTime[1] * Math.pow(10,-6));
+            writeResults(endTime,'json','POST');
         })
     }
 })
 
 function writeResults(newData, resource, method)
 {
-    var data = JSON.parse(fs.readFileSync('serverResults.json'));
+    var data = JSON.parse(fs.readFileSync('ServerResult.json'));
     data['ServerLanguage']['javascript'][resource][method].push(newData);
-    fs.writeFileSync('serverResults.json',JSON.stringify(data,null,4));
+    fs.writeFileSync('ServerResult.json',JSON.stringify(data,null,4));
 }
 
 server.listen(PORT,function(error)
