@@ -1,4 +1,4 @@
-import SpeedMeasurements
+import ResponseTime_Measurements
 import json
 import requests
 
@@ -13,8 +13,8 @@ OS = requests.get('http://localhost:8000/os').content.decode()
 for server in iterations['OS'][OS]['Server']:
     for resource in iterations['OS'][OS]['Server'][server]['resource']:
         for method in iterations['OS'][OS]['Server'][server]['resource'][resource]['method']:
-            languages = SpeedMeasurements.selectIterations(server,resource,method)
+            languages = ResponseTime_Measurements.selectIterations(server,resource,method)
             for language in languages:
-                results.append(SpeedMeasurements.Measurement(*language).run())
-            SpeedMeasurements.writeResults(OS,server,results,resource,method)
-            results.clear()                
+                results.append(ResponseTime_Measurements.Measurement(*language).run())
+            ResponseTime_Measurements.writeResults(OS,server,results,resource,method)
+            results.clear()
