@@ -16,7 +16,7 @@ class Measurement:
 
         times = []
         count = 0
-        while count < 10:
+        while count != 100:
             count += 1
 
             stopWatch = lauda.StopWatch()

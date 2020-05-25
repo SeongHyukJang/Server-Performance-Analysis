@@ -2,7 +2,7 @@ import ResponseTime_Measurements
 import json
 import requests
 
-print("\n========== Speed Comparison =========\n")
+print("\n========== Response Times Comparison =========\n")
 
 results = []
 

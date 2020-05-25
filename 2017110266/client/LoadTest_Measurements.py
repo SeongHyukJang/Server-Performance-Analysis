@@ -39,7 +39,7 @@ def run(server, resource, method):
             if method == 'GET':
                 query = 'curl http://localhost:8080/html'
 
-    while user != 10:
+    while user != 50:
         request += query
 
         stopwatch.start()
