@@ -4,7 +4,7 @@ import json
 
 def run(server, resource, method):
 
-    print("\n=============================================\n\n")
+    print("\n===================== Load Test Comparison=====================\n\n")
     print("Server : ",server)
     print("resource : ", resource)
     print("method : ", method)

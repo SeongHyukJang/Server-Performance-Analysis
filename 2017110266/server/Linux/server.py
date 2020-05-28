@@ -18,7 +18,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
-
+        self.send_response(200)
+        
         if self.path.endswith('os'):
             self.send_response(200)
             self.end_headers()
