@@ -18,8 +18,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
-        self.send_response(200)
-        
         if self.path.endswith('os'):
             self.send_response(200)
             self.end_headers()
@@ -102,7 +100,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         ctype = self.headers['Content-Type']
-
         if self.path.endswith('server-speed/post'):
             if ctype == 'application/json':
                 self.stopWatch.start()
@@ -113,7 +110,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.end_headers()
 
                 try:
-                    with open('POSTdata.json', 'r') as file:
+                    with open('POSTdataPY.json', 'r') as file:
                         data = json.load(file)
                 except:
                     data = []
@@ -121,7 +118,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 newData = json.loads(self.rfile.read(length))
                 data.append(newData)
 
-                with open('POSTdata.json', 'w') as file:
+                with open('POSTdataPY.json', 'w') as file:
                     json.dump(data, file, ensure_ascii=False, indent = 4)
 
                 self.stopWatch.stop()
@@ -136,7 +133,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.end_headers()
 
                 try:
-                    with open('POSTdata.json', 'r') as file:
+                    with open('POSTdataPY.json', 'r') as file:
                         data = json.load(file)
                 except:
                     data = []
@@ -144,7 +141,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 newData = json.loads(self.rfile.read(length))
                 data.append(newData)
 
-                with open('POSTdata.json', 'w') as file:
+                with open('POSTdataPY.json', 'w') as file:
                     json.dump(data, file, ensure_ascii=False, indent = 4)
 
 def main():

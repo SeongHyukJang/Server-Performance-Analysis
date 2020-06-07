@@ -7,6 +7,7 @@ const server = http.createServer(function(req,res)
     var startTime, endTime;
     if(req.method == "GET")
     {
+        res.writeHead(200);
         if(req.url == "/server-speed/json")
         {
             startTime = process.hrtime();
@@ -124,18 +125,18 @@ const server = http.createServer(function(req,res)
             {
                 newData = JSON.parse(newData);
 
-                data = fs.readFileSync('POSTdata.json');
+                data = fs.readFileSync('POSTdataJS.json');
                 if(data.toString() == '')
                 {
                     data = JSON.parse('[]');
                 }
                 else
                 {
-                    data = JSON.parse(fs.readFileSync('POSTdata.json'));
+                    data = JSON.parse(fs.readFileSync('POSTdataJS.json'));
                 }
                 
                 data.push(newData);
-                fs.writeFileSync('POSTdata.json',JSON.stringify(data,null,4));
+                fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
                 res.writeHead(200);
                 res.end();
 
@@ -158,18 +159,18 @@ const server = http.createServer(function(req,res)
             {
                 newData = JSON.parse(newData);
 
-                data = fs.readFileSync('POSTdata.json');
+                data = fs.readFileSync('POSTdataJS.json');
                 if(data.toString() == '')
                 {
                     data = JSON.parse('[]');
                 }
                 else
                 {
-                    data = JSON.parse(fs.readFileSync('POSTdata.json'));
+                    data = JSON.parse(fs.readFileSync('POSTdataJS.json'));
                 }
                 
                 data.push(newData);
-                fs.writeFileSync('POSTdata.json',JSON.stringify(data,null,4));
+                fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
                 res.writeHead(200);
                 res.end();
             })
