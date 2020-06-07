@@ -1,0 +1,16 @@
+{
+    "ServerLanguage": {
+        "javascript": {
+            "json": {
+                "GET": [],
+                "POST": []
+            },
+            "calc": {
+                "GET": []
+            },
+            "html": {
+                "GET": []
+            }
+        }
+    }
+}
