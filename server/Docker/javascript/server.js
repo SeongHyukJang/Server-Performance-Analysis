@@ -7,7 +7,8 @@ const server = http.createServer(function(req,res)
     var startTime, endTime;
     if(req.method == "GET")
     {
-        if(req.url == "/json")
+        res.writeHead(200);
+        if(req.url == "/server-speed/json")
         {
             startTime = process.hrtime();
 
@@ -22,9 +23,20 @@ const server = http.createServer(function(req,res)
             endTime = process.hrtime(startTime);
             endTime = Number(endTime[1] * Math.pow(10,-6));
             writeResults(endTime,'json','GET');
-            
         }
-        if(req.url == "/calc")
+
+        else if(req.url == "/json")
+        {
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
+            res.writeHead(200,{'Content-Type' : 'application/json'});
+            fs.readFile('GETdata.json', function(error,data)
+            {
+                res.write(data);
+                res.end();
+            })
+        }
+
+        if(req.url == "/server-speed/calc")
         {
             startTime = process.hrtime();
 
@@ -34,7 +46,7 @@ const server = http.createServer(function(req,res)
             let x = 1.0;
             let pi = 1.0;
             let i = 2;
-            while(i != 1000000)
+            while(i != 100000)
             {
                 x *= -1;
                 pi += x / (2*i -1);
@@ -49,7 +61,27 @@ const server = http.createServer(function(req,res)
             endTime = Number(endTime[1] * Math.pow(10,-6));
             writeResults(endTime,'calc','GET');
         }
-        if(req.url == "/html")
+
+        else if(req.url == "/calc")
+        {
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
+            res.writeHead(200);
+
+            let x = 1.0;
+            let pi = 1.0;
+            let i = 2;
+            while(i != 10000)
+            {
+                x *= -1;
+                pi += x / (2*i -1);
+                i++;
+            }
+            pi *= 4;
+
+            res.write(pi.toString());
+            res.end();
+        }
+        if(req.url == "/server-speed/html")
         {
             startTime = process.hrtime();
 
@@ -65,50 +97,92 @@ const server = http.createServer(function(req,res)
             endTime = Number(endTime[1] * Math.pow(10,-6));
             writeResults(endTime,'html','GET');
         }
+        else if(req.url == "/html")
+        {
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
+            res.writeHead(200,{'Content-Type':'text/html'});
+            fs.readFile('index.html',function(err,data)
+            {
+                res.write(data);
+                res.end()
+            });
+        }
     }
     else if(req.method == "POST")
     {   
-        startTime = process.hrtime();
-
-        console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
-
-        var newData;
-        req.on('data', function(data)
+        if(req.url == "/server-speed/post")
         {
-            newData = data;
-        });
+            startTime = process.hrtime();
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
 
-        req.on('end', function()
+            var newData;
+            req.on('data', function(data)
+            {
+                newData = data;
+            });
+
+            req.on('end', function()
+            {
+                newData = JSON.parse(newData);
+
+                data = fs.readFileSync('POSTdataJS.json');
+                if(data.toString() == '')
+                {
+                    data = JSON.parse('[]');
+                }
+                else
+                {
+                    data = JSON.parse(fs.readFileSync('POSTdataJS.json'));
+                }
+                
+                data.push(newData);
+                fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
+                res.writeHead(200);
+                res.end();
+
+                endTime = process.hrtime(startTime);
+                endTime = Number(endTime[1] * Math.pow(10,-6));
+                writeResults(endTime,'json','POST');
+            })
+        }
+        else
         {
-            newData = JSON.parse(newData);
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
 
-            data = fs.readFileSync('POSTdata.json');
-            if(data.toString() == '')
+            var newData;
+            req.on('data', function(data)
             {
-                data = JSON.parse('[]');
-            }
-            else
-            {
-                data = JSON.parse(fs.readFileSync('POSTdata.json'));
-            }
-            
-            data.push(newData);
-            fs.writeFileSync('POSTdata.json',JSON.stringify(data,null,4));
-            res.writeHead(200);
-            res.end();
+                newData = data;
+            });
 
-            endTime = process.hrtime(startTime);
-            endTime = Number(endTime[1] * Math.pow(10,-6));
-            writeResults(endTime,'json','POST');
-        })
+            req.on('end', function()
+            {
+                newData = JSON.parse(newData);
+
+                data = fs.readFileSync('POSTdataJS.json');
+                if(data.toString() == '')
+                {
+                    data = JSON.parse('[]');
+                }
+                else
+                {
+                    data = JSON.parse(fs.readFileSync('POSTdataJS.json'));
+                }
+                
+                data.push(newData);
+                fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
+                res.writeHead(200);
+                res.end();
+            })
+        }
     }
 })
 
 function writeResults(newData, resource, method)
 {
-    var data = JSON.parse(fs.readFileSync('ServerResult.json'));
+    var data = JSON.parse(fs.readFileSync('ServerSpeedResult.json'));
     data['ServerLanguage']['javascript'][resource][method].push(newData);
-    fs.writeFileSync('ServerResult.json',JSON.stringify(data,null,4));
+    fs.writeFileSync('ServerSpeedResult.json',JSON.stringify(data,null,4));
 }
 
 server.listen(PORT,function(error)
