@@ -21,7 +21,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         if self.path.endswith('os'):
             self.send_response(200)
             self.end_headers()
-            self.wfile.write('Docker'.encode())
+            self.wfile.write('Windows'.encode())
             
         if self.path.endswith('server-speed/json'):
             self.stopWatch.start()
