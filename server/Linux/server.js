@@ -137,7 +137,7 @@ const server = http.createServer(function(req,res)
                 
                 data.push(newData);
                 fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
-                res.writeHead(200);
+                res.writeHead(200,{'Content-Type' : 'application/json'});
                 res.end();
 
                 endTime = process.hrtime(startTime);
@@ -171,7 +171,7 @@ const server = http.createServer(function(req,res)
                 
                 data.push(newData);
                 fs.writeFileSync('POSTdataJS.json',JSON.stringify(data,null,4));
-                res.writeHead(200);
+                res.writeHead(200,{'Content-Type' : 'application/json'});
                 res.end();
             })
         }
