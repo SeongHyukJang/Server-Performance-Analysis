@@ -42,6 +42,9 @@ def selectIterations(server,resource,method):
     elif server == 'javascript':
         folder = "toJavascript"
         end = 'JS'
+    elif server == 'go':
+        folder = "toGo"
+        end = 'GO'
 
     languages = [
                 #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False

@@ -32,8 +32,20 @@ def run(server, resource, method):
         elif resource == 'html':
             if method == 'GET':
                 query = 'curl http://localhost:8080/server-speed/html'
-
+    elif server == 'go':
+        if resource == 'json':
+            if method == 'GET':
+                query = 'curl http://localhost:8090/server-speed/json'
+            elif method == 'POST':
+                query = 'curl -d ' + "'" + '{"userID" : "2017110266", "usrPW" : "1234", "name" : "JSH", "age" : 25}' + "'" + ' -H "Content-Type: application/json" http://localhost:8090/server-speed/post'
+        elif resource == 'calc':
+            if method == 'GET':
+                query = 'curl http://localhost:8090/server-speed/calc'
+        elif resource == 'html':
+            if method == 'GET':
+                query = 'curl http://localhost:8090/server-speed/html'
+                
     count = 0
-    while count != 100:
+    while count != 10:
         delegator.run(query)
         count += 1

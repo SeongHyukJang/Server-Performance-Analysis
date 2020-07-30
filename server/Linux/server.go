@@ -21,7 +21,7 @@ func getElapsedTimeAndSaveResult(start time.Time, resource, method string) {
 	var temp map[string]map[string]map[string]map[string][]float64
 	json.Unmarshal(data, &temp)
 
-	temp["ServerLanguage"]["go"][resource][method] = append(temp["ServerLanguage"]["go"][resource][method], elapsedTime.Seconds()*math.Pow(10, -3))
+	temp["ServerLanguage"]["go"][resource][method] = append(temp["ServerLanguage"]["go"][resource][method], elapsedTime.Seconds()*math.Pow(10, 3))
 	data, _ = json.MarshalIndent(temp, "", "\t")
 	ioutil.WriteFile("ServerSpeedResult.json", data, os.FileMode(744))
 }
