@@ -3,7 +3,7 @@ import json
 import statistics
 from matplotlib import pyplot as plt
 
-os.chdir('./server/Linux')
+os.chdir('./server')
 
 with open('ServerSpeedResult.json') as file:
     data = json.load(file)

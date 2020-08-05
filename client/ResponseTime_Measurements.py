@@ -56,11 +56,11 @@ def selectIterations(server,resource,method):
     
 
 
-def writeResults(OS,server, results,resource, method):
+def writeResults(server, results,resource, method):
     with open('ResponseTimeResult.json','r') as file:
         data = json.load(file)
     
-    data['OS'][OS]['Server'][server]['resource'][resource]['method'][method] = list(results)
+    data['Server'][server]['resource'][resource]['method'][method] = list(results)
 
     with open('ResponseTimeResult.json','w') as file:
         json.dump(data,file,ensure_ascii=False,indent=4)
