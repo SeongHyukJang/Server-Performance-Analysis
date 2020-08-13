@@ -49,7 +49,8 @@ def makePlot(fig,best,worst,median,title):
         s = str(median[i])
         fig.text(median[i],v,s,horizontalalignment='left',verticalalignment='center')
 
-    fig.xlim(0,max(worst) + max(best) )
+    #fig.xlim(0,max(worst) + max(best))
+    fig.xscale('log')
     fig.yticks([0.2,1.3,2.3],languages)
     fig.ylabel('Server')
     fig.xlabel('Time(ms)')
