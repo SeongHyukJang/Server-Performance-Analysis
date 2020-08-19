@@ -52,3 +52,9 @@
         - server : python, javascript(node), go
 ---
 ### 결과
+1. [Response Time](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/Response%20Time)
+2. [Server Speed](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/Server%20Speed)
+3. Load Test
+    1. [Concurrent Users](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/Concurrent%20Users)
+    2. [CPU](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/CPU)
+    3. [Memory](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/Memory)
