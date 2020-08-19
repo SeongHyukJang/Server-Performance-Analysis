@@ -46,6 +46,6 @@ def run(server, resource, method):
                 query = 'curl http://localhost:8090/server-speed/html'
                 
     count = 0
-    while count != 10:
+    while count != 100:
         delegator.run(query)
         count += 1

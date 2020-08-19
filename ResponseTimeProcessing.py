@@ -7,7 +7,7 @@ os.chdir('./client')
 with open('ResponseTimeResult.json') as file:
     data = json.load(file)
 
-Linux_Python = data['OS']['Linux']['Server']['python']
+Linux_Python = data['Server']['python']
 languages = ['Python 3', 'JS (node)', 'curl']
 
 def makeData(resource,method):

@@ -48,7 +48,7 @@ def selectIterations(server,resource,method):
 
     languages = [
                 #_language, _version_cmd, _run_cmd, _compile_cmd = None, _debug = False
-                ["Python 3", "python --version", "python " + folder + "/" + method + resource + end + ".py"],
+                ["Python 3", "python3.7 --version", "python " + folder + "/" + method + resource + end + ".py"],
                 ["JS (node)", "node --version", "node " + folder + "/" + method + resource + end + ".js"],
                 ["curl", "curl --version", folder + "/" + method + resource + end + ".sh"]
             ]
@@ -56,11 +56,11 @@ def selectIterations(server,resource,method):
     
 
 
-def writeResults(OS,server, results,resource, method):
+def writeResults(server, results,resource, method):
     with open('ResponseTimeResult.json','r') as file:
         data = json.load(file)
     
-    data['OS'][OS]['Server'][server]['resource'][resource]['method'][method] = list(results)
+    data['Server'][server]['resource'][resource]['method'][method] = list(results)
 
     with open('ResponseTimeResult.json','w') as file:
         json.dump(data,file,ensure_ascii=False,indent=4)
