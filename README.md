@@ -30,24 +30,18 @@
     - server 측면에서의 stress test 진행
     - 접속자의 수는 0명에서 시작하여 초당 10명씩 증가하여 1000명까지 증가한다
     - connection time 또는 response time이 10초를 초과하면 thread의 연결을 끊는다 (error로 분류)
+    - os : linux
+    - client : apache-jmeter
+    - server : python, javascript(node), go
     
     1. Concurrent Users
         - 동시접속자의 수의 증가에 따른 server간의 TPS 비교
-        - os : linux
-        - client : apache-jmeter
-        - server : python, javascript(node), go
-
+  
     2. CPU
         - 동시접속자의 수가 증가함에 따른 server간의 CPU 사용률을 비교
-        - os : linux
-        - client : apache-jmeter
-        - server : python, javascript(node), go
 
     3. Memory
         - 동시접속자의 수가 증가함에 따른 server간의 메모리 사용률을 비교
-        - os : linux
-        - client : apache-jmeter
-        - server : python, javascript(node), go
 ---
 ### 결과
 1. [Response Time](https://github.com/SeongHyukJang/Server-Performance-Analysis/tree/master/results/Response%20Time)
