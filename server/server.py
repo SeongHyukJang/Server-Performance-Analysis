@@ -18,7 +18,18 @@ class RequestHandler(BaseHTTPRequestHandler):
             json.dump(data,file,ensure_ascii=False,indent=4)
 
     def do_GET(self):
-            
+        
+        if self.path.endswith('image'):
+            self.send_response(200)
+            self.send_header('Content-Type','image/png')
+            self.end_headers()
+            with open('dummy.png','rb') as f:
+                self.wfile.write(f.read())
+
+        elif self.path.endswith('server-spped/image'):
+            pass
+
+
         if self.path.endswith('server-speed/json'):
             self.stopWatch.start()
 
