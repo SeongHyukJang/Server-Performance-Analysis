@@ -58,6 +58,7 @@ json_get = makeData('json','GET')
 json_post = makeData('json','POST')
 calc_get = makeData('calc','GET')
 html_get = makeData('html','GET')
+image_get = makeData('image','GET')
 
 os.chdir('../results/Response Time')
 
@@ -65,3 +66,4 @@ makePlot(plt,json_get[0],json_get[1],json_get[2],'GET JSON')
 makePlot(plt,json_post[0],json_post[1],json_post[2],'POST JSON')
 makePlot(plt,calc_get[0],calc_get[1],calc_get[2],'GET Calc')
 makePlot(plt,html_get[0],html_get[1],html_get[2],'GET HTML')
+makePlot(plt,image_get[0],image_get[1],image_get[2],'GET Image')

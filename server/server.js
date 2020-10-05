@@ -8,6 +8,30 @@ const server = http.createServer(function(req,res)
     if(req.method == "GET")
     {
         res.writeHead(200);
+
+        if(req.url == "/image"){
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
+            res.writeHead(200, {'Content-Type' : 'image/png'});
+            fs.readFile('dummy.png',function(error,data){
+                res.write(data);
+                res.end();
+            })
+        }
+        if(req.url == "server-speed/image"){
+            startTime = process.hrtime();
+
+            console.log(req.method + ' ' + req.url + " / HTTP/" + req.httpVersion);
+            res.writeHead(200, {'Content-Type' : 'image/png'});
+            fs.readFile('dummy.png',function(error,data){
+                res.write(data);
+                res.end();
+            })
+
+            endTime = process.hrtime(startTime);
+            endTime = Number(endTime[1] * Math.pow(10, -6));
+            writeResults(endtime, 'image', 'GET');
+        }
+
         if(req.url == "/server-speed/json")
         {
             startTime = process.hrtime();

@@ -90,6 +90,16 @@ func speedPostJSON(w http.ResponseWriter, r *http.Request) {
 	ioutil.WriteFile("POSTdataGO.json", data, os.FileMode(744))
 }
 
+func speedGetIMAGE(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(time.Unix(0, 0), r.URL, r.Method)
+	start := time.Now()
+	defer getElapsedTimeAndSaveResult(start, "image", "GET")
+
+	w.Header().Set("Content-Type", "image/png")
+	data, _ := ioutil.ReadFile("dummy.png")
+	fmt.Fprintf(w, string(data))
+}
+
 func getJSON(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(time.Unix(0, 0), r.URL, r.Method)
 	w.Header().Set("Content-Type", "application/json")
@@ -115,6 +125,13 @@ func getHTML(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(time.Unix(0, 0), r.URL, r.Method)
 	w.Header().Set("Content-Type", "text/html")
 	data, _ := ioutil.ReadFile("index.html")
+	fmt.Fprintf(w, string(data))
+}
+
+func getIMAGE(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(time.Unix(0, 0), r.URL, r.Method)
+	w.Header().Set("Content-Type", "image/png")
+	data, _ := ioutil.ReadFile("dummy.png")
 	fmt.Fprintf(w, string(data))
 }
 
@@ -152,6 +169,8 @@ func main() {
 	router.HandleFunc("/calc", getCALC).Methods("GET")
 	router.HandleFunc("/server-speed/html", speedGetHTML).Methods("GET")
 	router.HandleFunc("/html", getHTML).Methods("GET")
+	router.HandleFunc("/server-speed/image", speedGetIMAGE).Methods("GET")
+	router.HandleFunc("/image", getIMAGE).Methods("GET")
 
 	router.HandleFunc("/server-speed/post", speedPostJSON).Methods("POST")
 	router.HandleFunc("/post", postJSON).Methods("POST")

@@ -26,7 +26,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             with open('dummy.png','rb') as f:
                 self.wfile.write(f.read())
 
-        elif self.path.endswith('server-spped/image'):
+        elif self.path.endswith('server-speed/image'):
             pass
 
 
